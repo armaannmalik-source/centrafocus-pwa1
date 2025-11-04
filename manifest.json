@@ -1,0 +1,20 @@
+{
+  "name": "CentraFocus Profit Calculator",
+  "short_name": "CF Calculator",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0056d6",
+  "icons": [
+    {
+      "src": "assets/centrafocus.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/centrafocus.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

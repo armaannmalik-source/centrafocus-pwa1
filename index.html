@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0056d6" />
+  <title>CentraFocus Profit Calculator</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('assets/centrafocus.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      backdrop-filter: blur(8px);
+    }
+    .calculator {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 340px;
+      width: 90%;
+    }
+    .logo {
+      width: 60px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #003c9e;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+    }
+    button {
+      background-color: #0056d6;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #0044aa;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <img src="assets/centrafocus.png" alt="CentraFocus Logo" class="logo" />
+    <h1>CentraFocus Profit Calculator</h1>
+
+    <label for="amount">AMOUNT</label>
+    <input type="number" id="amount" placeholder="Enter total amount" />
+
+    <label for="profit">PROFIT</label>
+    <input type="number" id="profit" placeholder="Enter profit value" />
+
+    <button onclick="calculatePercentage()">Calculate</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(err => console.log('Service Worker Failed', err));
+    }
+
+    function calculatePercentage() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const profit = parseFloat(document.getElementById('profit').value);
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(amount) || isNaN(profit) || amount === 0) {
+        resultDiv.textContent = 'Please enter valid numbers (Amount cannot be 0).';
+        return;
+      }
+
+      const percentage = (profit / amount) * 100;
+      resultDiv.textContent = `${profit} is ${percentage.toFixed(2)}% of ${amount}`;
+    }
+  </script>
+</body>
+</html>
